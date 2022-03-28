@@ -6,7 +6,7 @@
 /*   By: ytakii </var/mail/ytakii>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:27:00 by ytakii            #+#    #+#             */
-/*   Updated: 2022/03/22 11:53:09 by ytakii           ###   ########.fr       */
+/*   Updated: 2022/03/28 13:27:02 by ytakii           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 int main(void)
 {
 	//char str1[] = "abcdef\nghij";
-	char str1[] = "";
+	static char *str1;
+	//	[] = "";
 	char*q;
 	char str2[] = "1111";
 	//q = ft_strchr(str1, '\n');
 	
-	q = strjoin(str1, str2);
+	q = ft_strjoin(str1, str2);
 	printf("%s\n", q);
 
 	return (0);

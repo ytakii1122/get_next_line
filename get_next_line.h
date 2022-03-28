@@ -6,22 +6,22 @@
 /*   By: ytakii </var/mail/ytakii>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:06:46 by ytakii            #+#    #+#             */
-/*   Updated: 2022/03/21 21:31:30 by ytakii           ###   ########.fr       */
+/*   Updated: 2022/03/28 11:37:52 by ytakii           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#ifndef GET_NEXT_LINE_H 
-//# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_H 
+# define GET_NEXT_LINE_H
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-#define BUF_SIZE 4
+//#define BUF_SIZE 
 
 char	*get_next_line(int fd);
 char	get_next_line_utils(int fd);
 char    *ft_strchr(const char *s, int c);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t  ft_strlen(const char *str);
-//#endif
+#endif
