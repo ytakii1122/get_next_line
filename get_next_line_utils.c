@@ -6,7 +6,7 @@
 /*   By: ytakii </var/mail/ytakii>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:27:00 by ytakii            #+#    #+#             */
-/*   Updated: 2022/03/28 13:27:02 by ytakii           ###   ########.fr       */
+/*   Updated: 2022/03/29 17:29:06 by ytakii           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ size_t	ft_strlen(const char *str)
 	size_t	count;
 
 	count = 0;
+	if (str == NULL)
+		return (0);
 	while (*str != '\0')
 	{
 		str++;
@@ -31,6 +33,8 @@ char	*ft_strchr(const char *s, int c)
 	size_t	j;
 
 	j = 0;
+	if (s == NULL)
+		return (NULL);
 	while (s[j] != '\0')
 	{
 		if (s[j] == (unsigned char) c)
@@ -68,17 +72,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	add_s1s2[i + j] = '\0';
 	return (add_s1s2);
 }
-
-
-
 /*
 int main(void)
 {
 	//char str1[] = "abcdef\nghij";
-	static char *str1;
-	//	[] = "";
+	static char str1 [] = "aaaa";
 	char*q;
-	char str2[] = "1111";
+	char str2[] = "\0";
 	//q = ft_strchr(str1, '\n');
 	
 	q = ft_strjoin(str1, str2);
