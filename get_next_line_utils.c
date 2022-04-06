@@ -6,7 +6,7 @@
 /*   By: ytakii </var/mail/ytakii>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:27:00 by ytakii            #+#    #+#             */
-/*   Updated: 2022/04/03 17:07:35 by ytakii           ###   ########.fr       */
+/*   Updated: 2022/04/06 21:51:38 by ytakii           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,28 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	add_s1s2[i + j] = '\0';
 	return (add_s1s2);
 }
+
+char	*ft_strdup(const char *s1)
+{
+	size_t	i;
+	size_t	j;
+	char	*a;
+
+	i = 0;
+	j = 0;
+	i = ft_strlen(s1);
+	a = (char *)malloc(sizeof(char) * (i + 1));
+	if (a == NULL)
+		return (NULL);
+	while (s1[j] != '\0' && j < i + 1)
+	{
+		a[j] = s1[j];
+		j++;
+	}
+	a[j] = '\0';
+	return (a);
+}
+
 /*
 int main(void)
 {

@@ -7,11 +7,12 @@ char    *save_loaded_line(int fd, char *save);
 int    main(void)
 {
 	int        fd;
-	char    *buf;
-	static char    *save;
+	//char    *buf;
+	//static char    *save;
 	char	*line;
 	//int        flag;
 	size_t    cnt;
+	//size_t	i;
 
 	cnt = 0;
 	fd = open("sample.txt", O_RDONLY);
@@ -20,6 +21,12 @@ int    main(void)
 	//printf("buf: %s\n", buf);
 	//line = get_next_line(fd);
 	//printf("%s",line);
+/*	while (i < 2)
+	{
+		line = get_next_line(fd);
+		printf("%s",line);
+		i++;
+	}*/
 /*	while (1) 
 	{ 
 	     line = get_next_line(fd); 
@@ -41,13 +48,12 @@ int    main(void)
 			printf("NULL returned");
 			break ;
 		}
-		printf("%s\n",line);
+		printf("%s",line);
 		free(line);
 		cnt++;
 	}
 	close(fd);
 	//system("leaks get_next_line");
-	//
-	//    return (0);
-	//
+	    return (0);
+	
 }
