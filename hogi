@@ -1,0 +1,19 @@
+aaaaaaa
+bbbb
+
+
+BUFFER_SIZE=3
+
+
+
+save=aaa
+
+
+buf=aaa
+save = aaaaaa
+
+
+buf=a\nb
+save =aaaaaaa\nb
+
+

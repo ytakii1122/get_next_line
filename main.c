@@ -21,6 +21,14 @@ int    main(void)
 	//printf("buf: %s\n", buf);
 	//line = get_next_line(fd);
 	//printf("%s",line);
+/*	line = get_next_line(fd);
+	printf("[%s]",line);
+
+	line = get_next_line(fd);
+	printf("[%s]",line);
+
+	line = get_next_line(fd);
+	printf("[%s]",line);*/
 /*	while (i < 2)
 	{
 		line = get_next_line(fd);
@@ -45,7 +53,7 @@ int    main(void)
 		line = get_next_line(fd);
 		if (line == NULL)
 		{
-			printf("NULL returned");
+			//printf("NULL returned");
 			break ;
 		}
 		printf("%s",line);
@@ -53,7 +61,7 @@ int    main(void)
 		cnt++;
 	}
 	close(fd);
-	//system("leaks get_next_line");
+	system("leaks get_next_line");
 	    return (0);
 	
 }

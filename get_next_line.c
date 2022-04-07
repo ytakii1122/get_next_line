@@ -6,7 +6,7 @@
 /*   By: ytakii </var/mail/ytakii>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:30:53 by ytakii            #+#    #+#             */
-/*   Updated: 2022/04/06 23:17:31 by ytakii           ###   ########.fr       */
+/*   Updated: 2022/04/07 23:44:36 by ytakii           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ char	*save_loaded_line(int fd, char *save)
 	if (buf == NULL)
 		return (NULL);
 	read_size = 1;
-	while(read_size > 0 || ft_strchr(save, '\n')== NULL)
+	while(read_size > 0 && ft_strchr(save, '\n')== NULL)
 	{
+		//printf("hoge\n");
 		read_size = read(fd, buf, BUFFER_SIZE);
 		if (read_size == -1)
 		{
@@ -40,16 +41,17 @@ char	*save_loaded_line(int fd, char *save)
 		buf[read_size] = '\0';
 		if (save == NULL)
 			save = ft_strdup(buf);
-		else if (buf == NULL)
-			save = ft_strdup(save);
+		else if (buf == NULL)//?
+			save = ft_strdup(save);//?
 		else
 		{	
 			tmp = ft_strjoin(save, buf);
 			ft_free(&save, tmp);//read_line = tmp;
 		}
-		if (read_size == 0)
+		if (read_size == 0)//?up?
 			break;
 	}
+	//printf("save:[%s]",save);
 	ft_free(&buf, NULL);
 	return (save);
 }
