@@ -6,18 +6,12 @@
 /*   By: ytakii </var/mail/ytakii>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:30:53 by ytakii            #+#    #+#             */
-/*   Updated: 2022/04/08 13:16:02 by ytakii           ###   ########.fr       */
+/*   Updated: 2022/04/08 14:20:02 by ytakii           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
-/*
-void	ft_free(char **dst, char *src)
-{
-	free(*dst);
-	*dst = src;
-}*/
 
 void	*ft_free_return(char *dst)
 {	
