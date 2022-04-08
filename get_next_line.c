@@ -6,7 +6,7 @@
 /*   By: ytakii </var/mail/ytakii>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:30:53 by ytakii            #+#    #+#             */
-/*   Updated: 2022/04/07 23:44:36 by ytakii           ###   ########.fr       */
+/*   Updated: 2022/04/07 23:48:21 by ytakii           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ char	*save_loaded_line(int fd, char *save)
 		buf[read_size] = '\0';
 		if (save == NULL)
 			save = ft_strdup(buf);
-		else if (buf == NULL)//?
-			save = ft_strdup(save);//?
+		/*else if (buf == NULL)//?
+			save = ft_strdup(save);//?*/
 		else
 		{	
 			tmp = ft_strjoin(save, buf);

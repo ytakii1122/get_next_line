@@ -61,7 +61,7 @@ int    main(void)
 		cnt++;
 	}
 	close(fd);
-	system("leaks get_next_line");
+	system("leaks -q a.out");
 	    return (0);
 	
 }
