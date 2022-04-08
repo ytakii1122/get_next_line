@@ -6,17 +6,24 @@
 /*   By: ytakii </var/mail/ytakii>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:30:53 by ytakii            #+#    #+#             */
-/*   Updated: 2022/04/07 23:48:21 by ytakii           ###   ########.fr       */
+/*   Updated: 2022/04/08 13:16:02 by ytakii           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
-
+/*
 void	ft_free(char **dst, char *src)
 {
 	free(*dst);
 	*dst = src;
+}*/
+
+void	*ft_free_return(char *dst)
+{	
+	free(dst);
+	dst = NULL;
+	return (NULL);
 }
 
 char	*save_loaded_line(int fd, char *save)
@@ -29,66 +36,30 @@ char	*save_loaded_line(int fd, char *save)
 	if (buf == NULL)
 		return (NULL);
 	read_size = 1;
-	while(read_size > 0 && ft_strchr(save, '\n')== NULL)
+	while (read_size > 0 && ft_strchr(save, '\n') == NULL)
 	{
-		//printf("hoge\n");
 		read_size = read(fd, buf, BUFFER_SIZE);
 		if (read_size == -1)
-		{
-			ft_free(&buf, NULL);
-			return (NULL);
-		}
+			return (ft_free_return(buf));
 		buf[read_size] = '\0';
 		if (save == NULL)
-			save = ft_strdup(buf);
-		/*else if (buf == NULL)//?
-			save = ft_strdup(save);//?*/
-		else
-		{	
-			tmp = ft_strjoin(save, buf);
-			ft_free(&save, tmp);//read_line = tmp;
-		}
-		if (read_size == 0)//?up?
-			break;
+			save = ft_strdup("");
+		tmp = ft_strjoin(save, buf);
+		free(save);
+		save = tmp;
+		if (read_size == 0)
+			break ;
 	}
-	//printf("save:[%s]",save);
-	ft_free(&buf, NULL);
+	free(buf);
+	buf = NULL;
 	return (save);
 }
-
-/*
-char	*ft_line_cpy(char **read_line, char **line )
-{
-	char	*line_before_n;
-	size_t	line_size;
-	size_t	i;
-
-	i = 0;
-	if (ft_strchr(*read_line, '\n') == NULL)
-		line_size = ft_strlen(*read_line);
-	else
-	{
-	line_before_n = ft_strchr(*read_line, '\n');
-	line_size = ft_strlen(*read_line) - ft_strlen(line_before_n);
-	}
-	*line = (char *)malloc(sizeof(char) * (line_size + 1));
-	if (line < 0)
-		return (NULL);
-	while (i < line_size)
-	{
-		(*line)[i] = (*read_line)[i];
-		i++;
-	}
-	(*line)[i] = '\0';
-	return (*line);
-}
-*/
 
 char	*get_new_line(char *save)
 {
 	size_t	i;
 	char	*return_line;
-	
+
 	i = 0;
 	if (save[i] == '\0')
 		return (NULL);
@@ -96,22 +67,15 @@ char	*get_new_line(char *save)
 		i++;
 	if (save[i] == '\n')
 		i++;
-	return_line = (char *)malloc(sizeof(char) * (i + 1));//'\n'+'\0'
+	return_line = (char *)malloc(sizeof(char) * (i + 1));
 	if (return_line == NULL)
-		return(NULL);
-	i = 0;
-	while (save[i] != '\0' && save[i] != '\n')
-	{
-		return_line[i] = save[i];
-		i++;
-	}	
-	if (save[i] == '\n')
-	{
-		return_line[i] = '\n';
-		i++;
-	}
+		return (NULL);
 	return_line[i] = '\0';
-	//printf("return_line:%s",return_line);
+	while (i)
+	{
+		i--;
+		return_line[i] = save[i];
+	}
 	return (return_line);
 }
 
@@ -124,51 +88,25 @@ char	*ft_save_update(char *save)
 
 	i = 0;
 	j = 0;
-	save_size = ft_strlen(save);	
+	save_size = ft_strlen(save);
 	while (save[i] != '\0' && save[i] != '\n')
 		i++;
 	if (save[i] == '\0')
-	{
-		ft_free(&save, NULL);
-		return (NULL);
-	}
-	save_update = (char *)malloc(sizeof(char) * (save_size - (i + 1) + 1)); //+1-1
+		return (ft_free_return(save));
+	save_update = (char *)malloc(sizeof(char) * (save_size - (i + 1) + 1));
 	if (save_update == NULL)
-	{
-		ft_free(&save, NULL);
-		return (NULL);
-	}
+		return (ft_free_return(save));
 	while (save[i + 1 + j] != '\0')
 	{
 		save_update[j] = save[i + 1 + j];
 		j++;
 	}
 	save_update[j] = '\0';
-	ft_free(&save, NULL);
+	free(save);
+	save = NULL;
 	return (save_update);
 }
-/*
-char	*ft_save(char *line, char *read_line)
-{
-	char	save_size;
-	char	*save;
-	size_t	i;
 
-	i = 0;
-	save_size = ft_strlen(read_line) - ft_strlen(line);
-	save = (char *)malloc(sizeof(char) * (save_size + 1));
-	if (save == NULL)
-		return (NULL);
-	while (read_line[i] != '\0')
-	{
-		save[i] = read_line[ft_strlen(line) + 1 + i];
-		i++;
-	}
-	//printf("%s\n",save);
-	free(read_line);
-	return (save);
-}
-*/
 char	*get_next_line(int fd)
 {
 	char		*line;
@@ -178,19 +116,9 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	save = save_loaded_line(fd, save);
-	//printf("save:%s",save);
 	if (save == NULL)
 		return (NULL);
 	line = get_new_line(save);
-	//printf("line,%s",line);
-	//line = ft_line_cpy(read_line);
-	//line = ft_line_cpy(&save, &line);
-	//save = ft_save(line, save);
 	save = ft_save_update(save);
-	//printf("save_update:%s",save);
-	//printf("line:%s",line);
-	//if (save == NULL)
-	//	return (NULL);
-	//printf("re_line:%s",line);
 	return (line);
 }

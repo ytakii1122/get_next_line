@@ -6,12 +6,11 @@
 /*   By: ytakii </var/mail/ytakii>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:27:00 by ytakii            #+#    #+#             */
-/*   Updated: 2022/04/07 23:37:46 by ytakii           ###   ########.fr       */
+/*   Updated: 2022/04/08 13:16:58 by ytakii           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"get_next_line.h"
-#include<stdio.h>
 
 size_t	ft_strlen(const char *str)
 {
